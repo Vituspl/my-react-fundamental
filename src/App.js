@@ -1,17 +1,17 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 function App() {
-    // Создадим счетчик лайков
-    let likes = 0;
+    // Создаем состояние счетчика с помощью ф-ии setState(0) c начальным 0
+    const [likes, setLikes] = useState(0);
 
-    // Ф-ия для добавления лайков и вывода их в консоль и эту ф-ию
-    // передадим в слушатель события.
-    // В консоли лайки добавляются, но не на странице браузера,
-    // т.к. реакт не понимает что в какой то компоненте произошли изменения
-    // и не перерисовывает ничего. Для этого надо ЯВНО сообщить что произошли изменения.
-    // Для этого нужны состояния.
     function increment() {
-        likes += 1;
+// Счетчик лайков меняем не на прямую, а через ф-ию setLikes, которая меняет состояние.
+        setLikes(likes + 1);
+        console.log(likes);
+    }
+
+    function decrement() {
+        setLikes(likes - 1);
         console.log(likes);
     }
 
@@ -21,7 +21,7 @@ function App() {
         <div className="App">
             <h1>{likes}</h1>
             <button onClick={increment}>Increment</button>
-            <button onClick={() => likes -= 1}>Decrement</button>
+            <button onClick={decrement}>Decrement</button>
         </div>
     );
 }
